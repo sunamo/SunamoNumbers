@@ -1,3 +1,5 @@
+using SunamoData;
+
 namespace SunamoNumbers;
 
 
@@ -22,6 +24,14 @@ public static partial class NH
         vr.Add(to);
         return vr;
     }
+
+    public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> l)
+    {
+        MedianAverage<double> ma = null;
+        var result = CalculateMedianAverage(l, out ma);
+        return (result, ma);
+    }
+
 
     public static string CalculateMedianAverage(List<float> l2, out MedianAverage<double> medianAverage)
     {
@@ -154,6 +164,13 @@ public static partial class NH
     {
         MedianAverage<double> medianAverage = null;
         return CalculateMedianAverage(list, out medianAverage);
+    }
+
+    public static (string, MedianAverage<double>) CalculateMedianAverageNoOutDouble(List<double> list)
+    {
+        MedianAverage<double> medianAverage = null;
+        var vr = CalculateMedianAverage(list, out medianAverage);
+        return (vr, medianAverage);
     }
 
     public static string CalculateMedianAverage(List<double> list, out MedianAverage<double> medianAverage)

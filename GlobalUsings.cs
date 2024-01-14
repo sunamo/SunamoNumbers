@@ -8,6 +8,5 @@ global using SunamoTextOutputGenerator;
 global using SunamoBts;
 global using SunamoValues.Constants;
 global using SunamoNumbers._sunamo;
-global using SunamoNumbers.Data;
 global using SunamoExtensions;
 global using SunamoStringReplace;
