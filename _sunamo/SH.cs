@@ -1,7 +1,7 @@
-namespace SunamoNumbers._sunamo;
+//namespace SunamoNumbers._sunamo;
 
-internal class SH
-{
-    internal static Func<string, string, string, string> ReplaceOnce;
-    internal static Func<string, int[], string> JoinMakeUpTo2NumbersToZero;
-}
+//public class SH
+//{
+//    public static Func<string, string, string, string> ReplaceOnce;
+//    public static Func<string, int[], string> JoinMakeUpTo2NumbersToZero;
+//}

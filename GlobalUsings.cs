@@ -7,6 +7,4 @@ global using System.Data;
 global using SunamoTextOutputGenerator;
 global using SunamoBts;
 global using SunamoValues.Constants;
-global using SunamoNumbers._sunamo;
-global using SunamoExtensions;
 global using SunamoStringReplace;

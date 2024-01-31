@@ -1,5 +1,3 @@
-using SunamoData;
-
 namespace SunamoNumbers;
 
 
@@ -51,20 +49,7 @@ public static partial class NH
         return float.Parse(vr);
     }
 
-    public static void RemoveEndingZeroPadding(List<byte> bajty)
-    {
-        for (int i = bajty.Count - 1; i >= 0; i--)
-        {
-            if (bajty[i] == 0)
-            {
-                bajty.RemoveAt(i);
-            }
-            else
-            {
-                break;
-            }
-        }
-    }
+
 
     /// <summary>
     /// Reversion is DTHelperGeneral.FullYear
@@ -228,7 +213,7 @@ public static partial class NH
 
         var result = sb.ToString();
 
-        s = SHReplace.ReplaceOnce(s, result, string.Empty);
+        s = SHSH.ReplaceOnce(s, result, string.Empty);
 
 
         return (BTS.ParseInt(result, int.MaxValue), s);
@@ -253,7 +238,7 @@ public static partial class NH
         {
             var d = sortedNumbers.ElementAt(halfIndex);
             var d2 = sortedNumbers.ElementAt((halfIndex - 1));
-            median = Sum(CA.ToListString(new string[] { d.ToString(), d2.ToString() })) / 2;
+            median = Sum(new List<string>(new string[] { d.ToString(), d2.ToString() })) / 2;
         }
         else
         {
