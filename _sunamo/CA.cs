@@ -1,7 +1,9 @@
+namespace SunamoNumbers._sunamo;
+
 //namespace SunamoNumbers._sunamo;
 
-//public class CA
+//internal class CA
 //{
-//    public static Func<String[], List<string>> ToListString;
+//    internal static Func<String[], List<string>> ToListString;
 
 //}

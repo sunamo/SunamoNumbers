@@ -1,4 +1,9 @@
+
 namespace SunamoNumbers;
+using SunamoBts;
+using SunamoData;
+using SunamoNumbers._sunamo;
+
 
 
 
@@ -213,7 +218,7 @@ public static partial class NH
 
         var result = sb.ToString();
 
-        s = SHSH.ReplaceOnce(s, result, string.Empty);
+        s = SH.ReplaceOnce(s, result, string.Empty);
 
 
         return (BTS.ParseInt(result, int.MaxValue), s);
