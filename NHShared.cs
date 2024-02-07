@@ -1,7 +1,7 @@
 
 namespace SunamoNumbers;
-using SunamoBts;
 using SunamoData;
+using SunamoInterfaces.Interfaces;
 using SunamoNumbers._sunamo;
 
 
@@ -127,9 +127,9 @@ public static partial class NH
         return c;
     }
 
-    public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries)
+    public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries, ITextOutputGenerator tog)
     {
-        TextOutputGenerator tog = new TextOutputGenerator();
+        //TextOutputGenerator tog = new TextOutputGenerator();
         var d = new Dictionary<string, (float, string)>();
 
         foreach (var item in typeWithSalaries)

@@ -4,6 +4,5 @@ global using System.Linq;
 global using System.Text;
 global using SunamoExceptions.OnlyInSE;
 global using System.Data;
-global using SunamoTextOutputGenerator;
 global using SunamoExtensions;
 global using SunamoValues.Constants;

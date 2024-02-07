@@ -1,9 +1,4 @@
-
 namespace SunamoNumbers;
-using SunamoBts;
-
-
-
 public static partial class NH
 {
     private static Type type = typeof(NH);
@@ -108,7 +103,7 @@ public static partial class NH
 
         for (; i < p.Count; i++)
         {
-            if (BTS.IsInt(p[i]))
+            if (int.TryParse(p[i], out var _))
             {
                 sb.Append(p[i]);
             }
