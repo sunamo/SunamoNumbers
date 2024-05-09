@@ -1,6 +1,6 @@
 using SunamoNumbers._sunamo;
 
-namespace SunamoShared.Helpers.Number;
+namespace SunamoNumbers;
 
 public partial class LinearHelper
 {

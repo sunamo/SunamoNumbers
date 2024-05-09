@@ -1,4 +1,4 @@
-namespace SunamoShared.Helpers.Number;
+namespace SunamoNumbers;
 public class MH
 {
     /// <summary>
