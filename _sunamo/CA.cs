@@ -1,4 +1,4 @@
-namespace SunamoNumbers._sunamo;
+namespace SunamoNumbers;
 
 //namespace SunamoNumbers._sunamo;
 
