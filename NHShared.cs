@@ -1,8 +1,8 @@
 
 namespace SunamoNumbers;
-using SunamoData;
-using SunamoInterfaces.Interfaces;
-using SunamoNumbers._sunamo;
+
+
+
 
 
 
