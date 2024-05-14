@@ -20,6 +20,13 @@
     <Compile Include="..\SunamoValues\AllChars.cs" Link="_linked\SunamoValues\AllChars.cs" />
     <Compile Include="..\SunamoExceptions\OnlyInSE\Exc.cs" Link="_linked\SunamoExceptions\OnlyInSE\Exc.cs" />
     <Compile Include="..\SunamoXlfKeys\XlfKeys.cs" Link="_linked\SunamoXlfKeys\XlfKeys.cs" />
+    <Compile Include="..\SunamoBts\BTS.cs" Link="_linked\SunamoBts\BTS.cs" />
+    <Compile Include="..\SunamoBts\CAToNumber.cs" Link="_linked\SunamoBts\CAToNumber.cs" />
+    <Compile Include="..\SunamoLogger\Logger\LoggerBaseNS\DebugLogger.cs" Link="_linked\SunamoLogger\Logger\LoggerBaseNS\DebugLogger.cs" />
+    <Compile Include="..\SunamoParsing\Parse.cs" Link="_linked\SunamoParsing\Parse.cs" />
+    <Compile Include="..\SunamoData\MedianAverage.cs" Link="_linked\SunamoData\MedianAverage.cs" />
+    <Compile Include="..\SunamoString\SH.cs" Link="_linked\SunamoString\SH.cs" />
+    <Compile Include="..\SunamoParsing\TryParse.cs" Link="_linked\SunamoParsing\TryParse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
