@@ -2,7 +2,7 @@ namespace SunamoNumbers;
 
 using System.Text.RegularExpressions;
 
-//namespace SunamoNumbers._sunamo;
+//namespace SunamoNumbers;
 
 internal class SH
 {

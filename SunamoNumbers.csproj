@@ -16,6 +16,11 @@
     <Compile Include="..\SunamoValues\AllChars.cs" Link="_linked\SunamoValues\AllChars.cs" />
     <Compile Include="..\SunamoValues\AllStrings.cs" Link="_linked\SunamoValues\AllStrings.cs" />
     <Compile Include="..\SunamoValues\Consts.cs" Link="_linked\SunamoValues\Consts.cs" />
+    <Compile Include="..\SunamoExceptions\OnlyInSE\ThrowEx.cs" Link="_linked\SunamoExceptions\OnlyInSE\ThrowEx.cs" />
+    <Compile Include="..\SunamoData\MedianAverage.cs" Link="_linked\SunamoData\MedianAverage.cs" />
+    <Compile Include="..\SunamoInterfaces\Interfaces\ITextOutputGenerator.cs" Link="_linked\SunamoInterfaces\Interfaces\ITextOutputGenerator.cs" />
+    <Compile Include="..\SunamoExceptions\OnlyInSE\Types.cs" Link="_linked\SunamoExceptions\OnlyInSE\Types.cs" />
+    <Compile Include="..\SunamoValues\Constants\NumConsts.cs" Link="_linked\SunamoValues\Constants\NumConsts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
