@@ -1,12 +1,12 @@
 namespace SunamoNumbers;
-internal class BTS
+public class BTS
 {
-    internal static string ToString<T>(T t)
+    public static string ToString<T>(T t)
     {
         return t.ToString();
     }
 
-    internal static object MethodForParse<T1>()
+    public static object MethodForParse<T1>()
     {
         var t = typeof(T1);
         #region Same seria as in DefaultValueForTypeT
@@ -89,7 +89,7 @@ internal class BTS
         return null;
     }
 
-    internal static int ParseInt(string entry, int _default)
+    public static int ParseInt(string entry, int _default)
     {
         //entry = SHSH.FromSpace160To32(entry);
         entry = entry.Replace(" ", string.Empty);
