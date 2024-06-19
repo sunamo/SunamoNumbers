@@ -6,11 +6,7 @@
     <Version>24.5.25.1</Version>
     <Description>Generating, calculating with numbers</Description>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);ASYNC;SunamoNumbers</DefineConstants>
   </PropertyGroup>

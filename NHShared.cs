@@ -35,6 +35,27 @@ public static partial class NH
         return (result, ma);
     }
 
+    /// <summary>
+    /// gen metoda abych nemusel kopírovat toho více tím že jedna volá druhou
+    /// </summary>
+    /// <param name="l2"></param>
+    /// <param name="medianAverage"></param>
+    /// <returns></returns>
+    public static string CalculateMedianAverageT(List<Double> list, out MedianAverage<Double> medianAverage)
+    {
+        list.RemoveAll(d => d == 0);
+
+        ThrowEx.OnlyOneElement("list", list);
+
+        medianAverage = new MedianAverage<Double>();
+        medianAverage.count = list.Count;
+        medianAverage.median = NH.Median<Double>(list);
+        medianAverage.average = NH.Average<Double>(list);
+        medianAverage.min = list.Min();
+        medianAverage.max = list.Max();
+
+        return medianAverage.ToString();
+    }
 
     public static string CalculateMedianAverage(List<float> l2, out MedianAverage<double> medianAverage)
     {
