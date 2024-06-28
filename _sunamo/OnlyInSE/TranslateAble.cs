@@ -1,3 +1,5 @@
+
+namespace SunamoNumbers;
 public class TranslateAble
 {
     
