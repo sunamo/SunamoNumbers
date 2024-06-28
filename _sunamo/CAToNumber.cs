@@ -1,7 +1,7 @@
 namespace SunamoNumbers;
-public class CAToNumber
+internal class CAToNumber
 {
-    public static List<T> ToNumber<T, U>(Func<string, T> parse, IList<U> enumerable)
+    internal static List<T> ToNumber<T, U>(Func<string, T> parse, IList<U> enumerable)
     {
         List<T> result = new List<T>();
         foreach (var item in enumerable)
