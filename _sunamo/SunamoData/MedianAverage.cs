@@ -1,7 +1,7 @@
 namespace SunamoNumbers;
 
 
-internal class MedianAverage<T>
+public class MedianAverage<T>
 {
     internal T median;
     internal T average;
