@@ -148,7 +148,7 @@ public static partial class NH
         return c;
     }
 
-    public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries, ITextOutputGenerator tog)
+    public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries)
     {
         //TextOutputGenerator tog = new TextOutputGenerator();
         var d = new Dictionary<string, (float, string)>();
@@ -162,13 +162,15 @@ public static partial class NH
 
         }
 
+        dynamic sb = new StringBuilder();
+
         var ord = d.OrderByDescending(d => d.Value.Item1);
         foreach (var item in ord)
         {
-            tog.PairBullet(item.Key, item.Value.Item2);
+            sb.PairBullet(item.Key, item.Value.Item2);
         }
 
-        return tog.ToString();
+        return sb.ToString();
     }
 
     public static string CalculateMedianAverage(List<double> list)
