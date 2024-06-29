@@ -7,6 +7,21 @@ namespace SunamoNumbers;
 
 public static partial class NH
 {
+    public static void RemoveEndingZeroPadding(List<byte> bajty)
+    {
+        for (int i = bajty.Count - 1; i >= 0; i--)
+        {
+            if (bajty[i] == 0)
+            {
+                bajty.RemoveAt(i);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
     public static int MinForLength(int length)
     {
         return int.Parse("1".PadRight(4, '0'));
@@ -16,13 +31,6 @@ public static partial class NH
     {
         return int.Parse("9".PadRight(4, '9'));
     }
-
-
-
-
-
-
-
 
     public static float AverageFloat(double gridWidth, double columnsCount)
     {

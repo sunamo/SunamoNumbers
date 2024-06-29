@@ -8,7 +8,7 @@ internal class MedianAverage<T>
     internal T min;
     internal T max;
     internal int count;
-    internal override string ToString()
+    public override string ToString()
     {
         return $"Count: {count}, Median: {median}, Average: {average}, Min: {min}, Max: {max}";
     }
