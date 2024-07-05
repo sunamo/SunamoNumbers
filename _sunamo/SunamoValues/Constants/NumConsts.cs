@@ -1,4 +1,4 @@
-namespace SunamoNumbers;
+namespace SunamoNumbers._sunamo.SunamoValues.Constants;
 
 
 internal class NumConsts

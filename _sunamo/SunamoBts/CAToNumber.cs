@@ -1,4 +1,4 @@
-namespace SunamoNumbers;
+namespace SunamoNumbers._sunamo.SunamoBts;
 internal class CAToNumber
 {
     internal static List<T> ToNumber<T, U>(Func<string, T> parse, IList<U> enumerable)

@@ -1,4 +1,4 @@
-namespace SunamoNumbers;
+namespace SunamoNumbers._public.SunamoData;
 
 
 public class MedianAverage<T>

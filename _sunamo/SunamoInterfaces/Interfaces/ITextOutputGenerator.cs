@@ -1,4 +1,4 @@
-namespace SunamoNumbers;
+namespace SunamoNumbers._sunamo.SunamoInterfaces.Interfaces;
 
 
 internal interface ITextOutputGenerator

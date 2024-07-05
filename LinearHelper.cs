@@ -1,4 +1,4 @@
-﻿namespace SunamoNumbers;
+namespace SunamoNumbers;
 
 public class LinearHelper
 {

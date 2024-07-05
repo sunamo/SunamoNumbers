@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SunamoNumbers;
+namespace SunamoNumbers._sunamo.SunamoExtensions;
 internal static class ListExtensions
 {
     internal static void Swap<T>(this IList<T> list, int dx1, int dx2)

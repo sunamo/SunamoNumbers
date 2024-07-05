@@ -1,4 +1,4 @@
-namespace SunamoNumbers;
+namespace SunamoNumbers._sunamo.SunamoString;
 
 using System.Text.RegularExpressions;
 

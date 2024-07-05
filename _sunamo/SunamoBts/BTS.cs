@@ -1,4 +1,4 @@
-namespace SunamoNumbers;
+namespace SunamoNumbers._sunamo.SunamoBts;
 internal class BTS
 {
     internal static string ToString<T>(T t)
