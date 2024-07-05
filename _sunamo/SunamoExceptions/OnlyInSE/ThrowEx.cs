@@ -1,4 +1,3 @@
-
 namespace SunamoNumbers._sunamo.SunamoExceptions.OnlyInSE;
 internal class ThrowEx
 {
