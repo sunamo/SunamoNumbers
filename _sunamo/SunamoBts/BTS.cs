@@ -1,4 +1,5 @@
 namespace SunamoNumbers._sunamo.SunamoBts;
+
 internal class BTS
 {
     internal static string ToString<T>(T t)
@@ -91,7 +92,7 @@ internal class BTS
 
     internal static int ParseInt(string entry, int _default)
     {
-        //entry = SHSH.FromSpace160To32(entry);
+        //entry = SH.FromSpace160To32(entry);
         entry = entry.Replace(" ", string.Empty);
         //var ch = entry[3];
 
