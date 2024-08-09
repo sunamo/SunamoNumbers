@@ -1,20 +1,15 @@
 namespace SunamoNumbers;
+
 public class LowHighHelper
 {
-    int low = int.MaxValue;
-    int max = int.MinValue;
+    private int low = int.MaxValue;
+    private int max = int.MinValue;
 
     public void Set(int t)
     {
-        if (t < low)
-        {
-            low = t;
-        }
+        if (t < low) low = t;
 
-        if (t > max)
-        {
-            max = t;
-        }
+        if (t > max) max = t;
     }
 
 #if DEBUG2
