@@ -384,7 +384,7 @@ public static class NH
         var t = typeof(T);
         if (t == Types.tDouble)
             return NumConsts.zeroDouble;
-        if (t == Types.tInt)
+        if (t == typeof(int))
             return NumConsts.zeroInt;
         if (t == Types.tFloat) return NumConsts.zeroFloat;
         ThrowEx.NotImplementedCase(t.FullName);

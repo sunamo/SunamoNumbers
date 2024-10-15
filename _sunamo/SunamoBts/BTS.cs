@@ -31,7 +31,7 @@ internal class BTS
         {
             return new Func<string, double>(double.Parse);
         }
-        if (t == Types.tInt)
+        if (t == typeof(int))
         {
             return new Func<string, int>(int.Parse);
         }
