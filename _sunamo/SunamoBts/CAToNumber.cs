@@ -12,7 +12,7 @@ internal class CAToNumber
                 continue;
             }
 
-            if (double.TryParse(item.ToString(), out var _) /*SH.IsNumber(item.ToString(), new Char[] { AllChars.comma, AllChars.dot, AllChars.dash })*/)
+            if (double.TryParse(item.ToString(), out var _) /*SH.IsNumber(item.ToString(), new Char[] { ',', '.', '-' })*/)
             {
                 var number = parse.Invoke(item.ToString());
 

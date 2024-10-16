@@ -8,7 +8,7 @@ global using System.IO;
 global using SunamoNumbers._public.SunamoData;
 global using SunamoNumbers._sunamo.SunamoBts;
 global using SunamoNumbers._sunamo.SunamoExtensions;
-global using SunamoNumbers._sunamo.SunamoValues;
+global using SunamoNumbers;
 global using SunamoNumbers._sunamo.SunamoExceptions;
 global using SunamoNumbers._sunamo.SunamoValues.Constants;
 global using System.Diagnostics;
