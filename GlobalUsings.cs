@@ -17,3 +17,5 @@ global using System.Reflection;
 global using System.Net;
 global using SunamoNumbers._sunamo;
 global using System.Diagnostics.CodeAnalysis;
+global using SunamoNumbers;
+global using SunamoNumbers._sunamo.SunamoInterfaces.Interfaces;

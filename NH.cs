@@ -4,6 +4,8 @@ public static class NH
 {
     private static Type type = typeof(NH);
 
+
+
     /// <summary>
     ///     Vytvoří interval od A1 do A2 včetně
     /// </summary>
