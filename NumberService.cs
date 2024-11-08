@@ -11,7 +11,7 @@ public class NumberService
 {
     public (int?, Interval?)? ParseInterval(string input)
     {
-        input = input.Replace(" ", "").RemoveInvisibleChars();
+        input = input.Replace("&nbsp;", "").Replace(" ", "").RemoveInvisibleChars();
         // Zkopíroval jsem znak –. Ále ani s ním mi to nevracelo true. Musí to být zapsané jako číslo.
         var enDash = (char)8211;
 
