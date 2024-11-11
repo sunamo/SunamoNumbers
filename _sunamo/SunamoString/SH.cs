@@ -32,8 +32,8 @@ internal class SH
     }
     internal static string NullToStringOrDefault(object n)
     {
-        
-        return n == null ? " " + "(null)" : "" + n;
+
+        return n == null ? " " + "(null)" : " " + n;
     }
     internal static string TrimEnd(string name, string ext)
     {
