@@ -19,10 +19,10 @@ public static class NH
         return vr;
     }
 
-    public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> l)
+    public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> l, bool throwExIfOnlyOneElement)
     {
         MedianAverage<double> ma = null;
-        var result = CalculateMedianAverage(l, out ma);
+        var result = CalculateMedianAverage(l, out ma, throwExIfOnlyOneElement);
         return (result, ma);
     }
 
@@ -48,16 +48,16 @@ public static class NH
         return medianAverage.ToString();
     }
 
-    public static string CalculateMedianAverage(List<float> l2, out MedianAverage<double> medianAverage)
+    public static string CalculateMedianAverage(List<float> l2, out MedianAverage<double> medianAverage, bool throwExIfOnlyOneElement)
     {
         var l = CAToNumber.ToNumber(double.Parse, l2);
-        return CalculateMedianAverage(l, out medianAverage);
+        return CalculateMedianAverage(l, out medianAverage, throwExIfOnlyOneElement);
     }
 
-    public static string CalculateMedianAverage(List<long> l2)
+    public static string CalculateMedianAverage(List<long> l2, bool throwExIfOnlyOneElement)
     {
         var l = CAToNumber.ToNumber(double.Parse, l2);
-        return CalculateMedianAverage(l);
+        return CalculateMedianAverage(l, throwExIfOnlyOneElement);
     }
 
     public static float RoundAndReturnInInputType(float ugtKm, int v)
@@ -126,7 +126,7 @@ public static class NH
         return c;
     }
 
-    public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries)
+    public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries, bool throwExIfOnlyOneElement)
     {
         //TextOutputGenerator tog = new TextOutputGenerator();
         var d = new Dictionary<string, (float, string)>();
@@ -134,7 +134,7 @@ public static class NH
         foreach (var item in typeWithSalaries)
         {
             MedianAverage<double> ma = null;
-            var r = item.Value.Count > 1 ? CalculateMedianAverage(item.Value, out ma) : item.Value[0].ToString();
+            var r = item.Value.Count > 1 ? CalculateMedianAverage(item.Value, out ma, throwExIfOnlyOneElement) : item.Value[0].ToString();
             var f = item.Value.Count > 1 ? (float)ma.average : item.Value[0];
             d.Add(item.Key, (f, r));
         }
@@ -147,31 +147,52 @@ public static class NH
         return sb.ToString();
     }
 
-    public static string CalculateMedianAverage(List<double> list)
+    public static string CalculateMedianAverage(List<double> list, bool throwExIfOnlyOneElement)
     {
         MedianAverage<double> medianAverage = null;
-        return CalculateMedianAverage(list, out medianAverage);
+        return CalculateMedianAverage(list, out medianAverage, throwExIfOnlyOneElement);
     }
 
-    public static (string, MedianAverage<double>) CalculateMedianAverageNoOutDouble(List<double> list)
+    public static (string, MedianAverage<double>) CalculateMedianAverageNoOutDouble(List<double> list, bool throwExIfOnlyOneElement)
     {
         MedianAverage<double> medianAverage = null;
-        var vr = CalculateMedianAverage(list, out medianAverage);
+        var vr = CalculateMedianAverage(list, out medianAverage, throwExIfOnlyOneElement);
         return (vr, medianAverage);
     }
 
-    public static string CalculateMedianAverage(List<double> list, out MedianAverage<double> medianAverage)
+    public static string CalculateMedianAverage(List<double> list, out MedianAverage<double> medianAverage, bool throwExIfOnlyOneElement)
     {
         list.RemoveAll(d => d == 0);
 
-        ThrowEx.OnlyOneElement("list", list);
+        if (list.Count == 0)
+        {
+            throw new ArgumentException($"{nameof(list)} have zero elements!");
+        }
+
+
 
         medianAverage = new MedianAverage<double>();
-        medianAverage.count = list.Count;
-        medianAverage.median = list.Median();
-        medianAverage.average = Average(list);
-        medianAverage.min = list.Min();
-        medianAverage.max = list.Max();
+        if (list.Count == 1)
+        {
+            if (throwExIfOnlyOneElement)
+            {
+
+                ThrowEx.OnlyOneElement("list", list);
+            }
+            else
+            {
+                medianAverage.count = 1;
+                medianAverage.median = medianAverage.average = medianAverage.min = medianAverage.max = list[1];
+            }
+        }
+        else
+        {
+            medianAverage.count = list.Count;
+            medianAverage.median = list.Median();
+            medianAverage.average = Average(list);
+            medianAverage.min = list.Min();
+            medianAverage.max = list.Max();
+        }
 
         return medianAverage.ToString();
     }
