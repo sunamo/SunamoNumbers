@@ -34,6 +34,12 @@ public class NumberService
 
 
             var b1 = int.TryParse(tp, out first);
+
+            if (isNeg)
+            {
+                first *= -1;
+            }
+
             var b2 = uint.TryParse(p[1].Trim(), out second);
             if (b1 && b2)
             {
