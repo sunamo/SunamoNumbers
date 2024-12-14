@@ -24,6 +24,9 @@ public class LinearHelper
     public static List<T> GetListFromTo<T>(int from, int to)
     {
         var s = GetStringListFromTo(from, to);
+
+
+
         var parse = (Func<string, T>)BTS.MethodForParse<T>();
         var r = CAToNumber.ToNumber(parse, s);
         return r;

@@ -29,9 +29,6 @@ public static class NH
     /// <summary>
     ///     gen metoda abych nemusel kopírovat toho více tím že jedna volá druhou
     /// </summary>
-    /// <param name="l2"></param>
-    /// <param name="medianAverage"></param>
-    /// <returns></returns>
     public static string CalculateMedianAverageT(List<double> list, out MedianAverage<double> medianAverage)
     {
         list.RemoveAll(d => d == 0);
@@ -411,7 +408,7 @@ public static class NH
             return NumConsts.zeroInt;
         if (t == Types.tFloat) return NumConsts.zeroFloat;
         ThrowEx.NotImplementedCase(t.FullName);
-        return null;
+        return new object();
     }
 
     public static T Sum<T>(List<T> list)

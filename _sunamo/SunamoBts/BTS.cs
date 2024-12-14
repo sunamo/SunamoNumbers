@@ -2,7 +2,7 @@ namespace SunamoNumbers._sunamo.SunamoBts;
 
 internal class BTS
 {
-    internal static string ToString<T>(T t)
+    internal static string? ToString<T>(T t)
     {
         return t.ToString();
     }
@@ -87,7 +87,7 @@ internal class BTS
 
         #endregion
 
-        return null;
+        return new object();
     }
 
     internal static int ParseInt(string entry, int _default)
