@@ -1,9 +1,4 @@
 namespace SunamoNumbers._sunamo.SunamoExtensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 internal static class StringExtensions
 {
@@ -14,7 +9,6 @@ internal static class StringExtensions
             .Where(c => !charsToRemove.Contains((int)c))
             .ToArray());
     }
-
     internal static string RemoveWhitespaceChars(this string input)
     {
         // https://g.co/gemini/share/b47b0b16b54f
