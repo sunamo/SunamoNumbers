@@ -1,11 +1,7 @@
 namespace SunamoNumbers._sunamo;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 internal class Types
 {
-
     internal static readonly Type tObject = typeof(object);
     internal static readonly Type tStringBuilder = typeof(StringBuilder);
     internal static readonly Type tIEnumerable = typeof(IEnumerable);

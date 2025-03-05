@@ -1,12 +1,4 @@
-﻿namespace SunamoNumbers;
-
-using SunamoNumbers.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
+namespace SunamoNumbers;
 
 public class NumberService
 {
@@ -15,7 +7,6 @@ public class NumberService
         input = HttpUtility.HtmlDecode(input).Replace(" ", "").RemoveInvisibleChars().RemoveWhitespaceChars();
         // Zkopíroval jsem znak –. Ále ani s ním mi to nevracelo true. Musí to být zapsané jako číslo.
         var enDash = (char)8211;
-
         var b = input.Contains(enDash);
         if (input.Contains("-") || b)
         {
@@ -25,21 +16,15 @@ public class NumberService
                 isNeg = true;
                 input = input.Substring(1);
             }
-
             int first = 0;
             uint second = 0;
-
             var p = input.Split('-', enDash);
             var tp = p[0].Trim().ToCharArray();
-
-
             var b1 = int.TryParse(tp, out first);
-
             if (isNeg)
             {
                 first *= -1;
             }
-
             var b2 = uint.TryParse(p[1].Trim(), out second);
             if (b1 && b2)
             {
@@ -54,7 +39,6 @@ public class NumberService
                 return (val, null);
             }
         }
-
         return null;
     }
 }

@@ -20,3 +20,9 @@ global using System.Diagnostics.CodeAnalysis;
 global using SunamoNumbers;
 global using SunamoNumbers._sunamo.SunamoInterfaces.Interfaces;
 global using SunamoNumbers.Data;
+
+global using System.Threading.Tasks;
+global using System.Web;
+global using ILogger = Microsoft.Extensions.Logging.ILogger;
+global using Microsoft.Extensions.Logging;
+global using NullLogger = Microsoft.Extensions.Logging.Abstractions.NullLogger;
