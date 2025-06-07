@@ -291,14 +291,14 @@ public static class NH
                 break;
     }
 
-    public static int MinForLength(int length)
+    public static int MinForLength(int length = 4)
     {
-        return int.Parse("1".PadRight(4, '0'));
+        return int.Parse("1".PadRight(length, '0'));
     }
 
-    public static int MaxForLength(int length)
+    public static int MaxForLength(int length = 4)
     {
-        return int.Parse("9".PadRight(4, '9'));
+        return int.Parse("9".PadRight(length, '9'));
     }
 
     public static float AverageFloat(double gridWidth, double columnsCount)
