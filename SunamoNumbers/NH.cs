@@ -1,8 +1,9 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers;
 
 public static class NH
 {
-    private static Type type = typeof(NH);
+    private static Type currentType = typeof(NH);
 
 
 
@@ -13,17 +14,17 @@ public static class NH
     /// <param name="to"></param>
     public static List<int> GenerateIntervalInt(int od, int to)
     {
-        var vr = new List<int>();
-        for (var i = od; i < to; i++) vr.Add(i);
-        vr.Add(to);
-        return vr;
+        var intervalList = new List<int>();
+        for (var currentNumber = od; currentNumber < to; currentNumber++) intervalList.Add(currentNumber);
+        intervalList.Add(to);
+        return intervalList;
     }
 
     public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> l, bool throwExIfOnlyOneElement)
     {
-        MedianAverage<double> ma = null;
-        var result = CalculateMedianAverage(l, out ma, throwExIfOnlyOneElement);
-        return (result, ma);
+        MedianAverage<double> medianAverageResult = null;
+        var result = CalculateMedianAverage(l, out medianAverageResult, throwExIfOnlyOneElement);
+        return (result, medianAverageResult);
     }
 
     /// <summary>
@@ -36,31 +37,31 @@ public static class NH
         ThrowEx.OnlyOneElement("list", list);
 
         medianAverage = new MedianAverage<double>();
-        medianAverage.count = list.Count;
-        medianAverage.median = list.Median();
-        medianAverage.average = Average(list);
-        medianAverage.min = list.Min();
-        medianAverage.max = list.Max();
+        medianAverage.elementCount = list.Count;
+        medianAverage.medianValue = list.Median();
+        medianAverage.averageValue = Average(list);
+        medianAverage.minimumValue = list.Min();
+        medianAverage.maximumValue = list.Max();
 
         return medianAverage.ToString();
     }
 
     public static string CalculateMedianAverage(List<float> l2, out MedianAverage<double> medianAverage, bool throwExIfOnlyOneElement)
     {
-        var l = CAToNumber.ToNumber(double.Parse, l2);
-        return CalculateMedianAverage(l, out medianAverage, throwExIfOnlyOneElement);
+        var doubleList = CAToNumber.ToNumber(double.Parse, l2);
+        return CalculateMedianAverage(doubleList, out medianAverage, throwExIfOnlyOneElement);
     }
 
     public static string CalculateMedianAverage(List<long> l2, bool throwExIfOnlyOneElement)
     {
-        var l = CAToNumber.ToNumber(double.Parse, l2);
-        return CalculateMedianAverage(l, throwExIfOnlyOneElement);
+        var doubleList = CAToNumber.ToNumber(double.Parse, l2);
+        return CalculateMedianAverage(doubleList, throwExIfOnlyOneElement);
     }
 
     public static float RoundAndReturnInInputType(float ugtKm, int v)
     {
-        var vr = Math.Round(ugtKm, v).ToString();
-        return float.Parse(vr);
+        var roundedValue = Math.Round(ugtKm, v).ToString();
+        return float.Parse(roundedValue);
     }
 
 
@@ -71,9 +72,9 @@ public static class NH
     /// <returns></returns>
     public static byte Last2NumberByte(int year)
     {
-        var ts = year.ToString();
-        ts = ts.Substring(ts.Length - 3);
-        return byte.Parse(ts);
+        var yearString = year.ToString();
+        yearString = yearString.Substring(yearString.Length - 3);
+        return byte.Parse(yearString);
     }
 
     /// <summary>
@@ -88,60 +89,60 @@ public static class NH
 
     public static string MakeUpTo2NumbersToZero(byte p)
     {
-        var s = p.ToString();
-        if (s.Length == 1) return "0" + p;
-        return s;
+        var numberString = p.ToString();
+        if (numberString.Length == 1) return "0" + p;
+        return numberString;
     }
 
 
     public static int GetLowest(List<int> excludedValues, List<int> list)
     {
         list.Sort();
-        var vr = list[0];
-        while (excludedValues.Contains(vr))
+        var lowestValue = list[0];
+        while (excludedValues.Contains(lowestValue))
         {
             list.RemoveAt(0);
-            if (list.Count > 0) vr = list[0];
+            if (list.Count > 0) lowestValue = list[0];
             //
         }
 
-        return vr;
+        return lowestValue;
     }
 
     public static List<byte> GenerateIntervalByte(byte od, byte to)
     {
-        var vr = new List<byte>();
-        for (var i = od; i < to; i++) vr.Add(i);
-        vr.Add(to);
-        return vr;
+        var byteIntervalList = new List<byte>();
+        for (var currentByte = od; currentByte < to; currentByte++) byteIntervalList.Add(currentByte);
+        byteIntervalList.Add(to);
+        return byteIntervalList;
     }
 
     public static List<T> Sort<T>(params T[] t)
     {
-        var c = new List<T>(t);
-        c.Sort();
-        return c;
+        var sortableCollection = new List<T>(t);
+        sortableCollection.Sort();
+        return sortableCollection;
     }
 
     public static string CalculateMedianAverage(Dictionary<string, List<float>> typeWithSalaries, bool throwExIfOnlyOneElement)
     {
         //TextOutputGenerator tog = new TextOutputGenerator();
-        var d = new Dictionary<string, (float, string)>();
+        var resultDictionary = new Dictionary<string, (float, string)>();
 
         foreach (var item in typeWithSalaries)
         {
             MedianAverage<double> ma = null;
-            var r = item.Value.Count > 1 ? CalculateMedianAverage(item.Value, out ma, throwExIfOnlyOneElement) : item.Value[0].ToString();
-            var f = item.Value.Count > 1 ? (float)ma.average : item.Value[0];
-            d.Add(item.Key, (f, r));
+            var calculationResult = item.Value.Count > 1 ? CalculateMedianAverage(item.Value, out ma, throwExIfOnlyOneElement) : item.Value[0].ToString();
+            var averageFloat = item.Value.Count > 1 ? (float)ma.averageValue : item.Value[0];
+            resultDictionary.Add(item.Key, (averageFloat, calculationResult));
         }
 
-        dynamic sb = new StringBuilder();
+        dynamic stringBuilder = new StringBuilder();
 
-        var ord = d.OrderByDescending(d => d.Value.Item1);
-        foreach (var item in ord) sb.PairBullet(item.Key, item.Value.Item2);
+        var orderedResults = resultDictionary.OrderByDescending(entry => entry.Value.Item1);
+        foreach (var item in orderedResults) stringBuilder.PairBullet(item.Key, item.Value.Item2);
 
-        return sb.ToString();
+        return stringBuilder.ToString();
     }
 
     public static string CalculateMedianAverage(List<double> list, bool throwExIfOnlyOneElement)
@@ -153,8 +154,8 @@ public static class NH
     public static (string, MedianAverage<double>) CalculateMedianAverageNoOutDouble(List<double> list, bool throwExIfOnlyOneElement)
     {
         MedianAverage<double> medianAverage = null;
-        var vr = CalculateMedianAverage(list, out medianAverage, throwExIfOnlyOneElement);
-        return (vr, medianAverage);
+        var calculationResult = CalculateMedianAverage(list, out medianAverage, throwExIfOnlyOneElement);
+        return (calculationResult, medianAverage);
     }
 
     public static string CalculateMedianAverage(List<double> list, out MedianAverage<double> medianAverage, bool throwExIfOnlyOneElement)
@@ -178,17 +179,17 @@ public static class NH
             }
             else
             {
-                medianAverage.count = 1;
-                medianAverage.median = medianAverage.average = medianAverage.min = medianAverage.max = list[1];
+                medianAverage.elementCount = 1;
+                medianAverage.medianValue = medianAverage.averageValue = medianAverage.minimumValue = medianAverage.maximumValue = list[1];
             }
         }
         else
         {
-            medianAverage.count = list.Count;
-            medianAverage.median = list.Median();
-            medianAverage.average = Average(list);
-            medianAverage.min = list.Min();
-            medianAverage.max = list.Max();
+            medianAverage.elementCount = list.Count;
+            medianAverage.medianValue = list.Median();
+            medianAverage.averageValue = Average(list);
+            medianAverage.minimumValue = list.Min();
+            medianAverage.maximumValue = list.Max();
         }
 
         return medianAverage.ToString();
@@ -217,15 +218,15 @@ public static class NH
 
     public static (int, string) NumberIntUntilWontReachOtherChar(string s)
     {
-        var sb = new StringBuilder();
+        var numberStringBuilder = new StringBuilder();
 
-        for (var i = 0; i < s.Length; i++)
-            if (char.IsNumber(s[i]))
-                sb.Append(s[i]);
+        for (var index = 0; index < s.Length; index++)
+            if (char.IsNumber(s[index]))
+                numberStringBuilder.Append(s[index]);
             else
                 break;
 
-        var result = sb.ToString();
+        var result = numberStringBuilder.ToString();
 
         s = SH.ReplaceOnce(s, result, string.Empty);
 
@@ -250,9 +251,9 @@ public static class NH
         double median;
         if (numberCount % 2 == 0)
         {
-            var d = sortedNumbers.ElementAt(halfIndex);
-            var d2 = sortedNumbers.ElementAt(halfIndex - 1);
-            median = Sum(new List<string>(new[] { d.ToString(), d2.ToString() })) / 2;
+            var upperValue = sortedNumbers.ElementAt(halfIndex);
+            var lowerValue = sortedNumbers.ElementAt(halfIndex - 1);
+            median = Sum(new List<string>(new[] { upperValue.ToString(), lowerValue.ToString() })) / 2;
         }
         else
         {
@@ -284,9 +285,9 @@ public static class NH
 
     public static void RemoveEndingZeroPadding(List<byte> bajty)
     {
-        for (var i = bajty.Count - 1; i >= 0; i--)
-            if (bajty[i] == 0)
-                bajty.RemoveAt(i);
+        for (var currentIndex = bajty.Count - 1; currentIndex >= 0; currentIndex--)
+            if (bajty[currentIndex] == 0)
+                bajty.RemoveAt(currentIndex);
             else
                 break;
     }
@@ -308,12 +309,12 @@ public static class NH
 
     public static string MakeUpTo3NumbersToZero(int p)
     {
-        var ps = p.ToString();
-        var delka = ps.Length;
-        if (delka == 1)
-            return "00" + ps;
-        if (delka == 2) return "0" + ps;
-        return ps;
+        var numberString = p.ToString();
+        var stringLength = numberString.Length;
+        if (stringLength == 1)
+            return "00" + numberString;
+        if (stringLength == 2) return "0" + numberString;
+        return numberString;
     }
 
     /// <summary>
@@ -323,10 +324,10 @@ public static class NH
     /// <param name="to"></param>
     public static List<short> GenerateIntervalShort(short od, short to)
     {
-        var vr = new List<short>();
-        for (var i = od; i < to; i++) vr.Add(i);
-        vr.Add(to);
-        return vr;
+        var shortIntervalList = new List<short>();
+        for (var currentShort = od; currentShort < to; currentShort++) shortIntervalList.Add(currentShort);
+        shortIntervalList.Add(to);
+        return shortIntervalList;
     }
 
     public static double ReturnTheNearestSmallIntegerNumber(double d)
@@ -336,13 +337,13 @@ public static class NH
 
     public static List<int> Invert(List<int> arr, int changeTo, int finalCount)
     {
-        var vr = new List<int>(finalCount);
-        for (var i = 0; i < finalCount; i++)
-            if (arr.Contains(i))
-                vr.Add(arr[arr.IndexOf(i)]);
+        var invertedList = new List<int>(finalCount);
+        for (var currentIndex = 0; currentIndex < finalCount; currentIndex++)
+            if (arr.Contains(currentIndex))
+                invertedList.Add(arr[arr.IndexOf(currentIndex)]);
             else
-                vr.Add(changeTo);
-        return vr;
+                invertedList.Add(changeTo);
+        return invertedList;
     }
 
 
@@ -353,9 +354,9 @@ public static class NH
 
     public static string MakeUpTo2NumbersToZero(int p)
     {
-        var s = p.ToString();
-        if (s.Length == 1) return "0" + p;
-        return s;
+        var numberString = p.ToString();
+        if (numberString.Length == 1) return "0" + p;
+        return numberString;
     }
 
     public static T Average<T>(List<T> list)
@@ -401,13 +402,13 @@ public static class NH
     /// <typeparam name="T"></typeparam>
     private static object ReturnZero<T>()
     {
-        var t = typeof(T);
-        if (t == Types.tDouble)
+        var targetType = typeof(T);
+        if (targetType == Types.tDouble)
             return NumConsts.zeroDouble;
-        if (t == typeof(int))
+        if (targetType == typeof(int))
             return NumConsts.zeroInt;
-        if (t == Types.tFloat) return NumConsts.zeroFloat;
-        ThrowEx.NotImplementedCase(t.FullName);
+        if (targetType == Types.tFloat) return NumConsts.zeroFloat;
+        ThrowEx.NotImplementedCase(targetType.FullName);
         return new object();
     }
 
@@ -420,14 +421,14 @@ public static class NH
 
     public static string JoinAnotherTokensIfIsNumber(List<string> p, int i)
     {
-        var sb = new StringBuilder();
+        var numberStringBuilder = new StringBuilder();
 
         for (; i < p.Count; i++)
             if (int.TryParse(p[i], out var _))
-                sb.Append(p[i]);
+                numberStringBuilder.Append(p[i]);
             else
                 break;
 
-        return sb.ToString();
+        return numberStringBuilder.ToString();
     }
 }

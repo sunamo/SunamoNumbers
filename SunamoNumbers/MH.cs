@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers;
 
 public class MH
@@ -19,18 +20,18 @@ public class MH
             return 0;
 
         // declare our incremental variables
-        int hcf = 1, counter = 1;
+        int highestCommonFactor = 1, currentCounter = 1;
 
-        while (counter <= Math.Min(a, b))
+        while (currentCounter <= Math.Min(a, b))
         {
-            if (a % counter == 0 && b % counter == 0) hcf = counter;
+            if (a % currentCounter == 0 && b % currentCounter == 0) highestCommonFactor = currentCounter;
 
             // increment counter
-            counter++;
+            currentCounter++;
         }
 
         // return the highest common factor
-        return hcf;
+        return highestCommonFactor;
     }
 
     /// <summary>
@@ -40,9 +41,9 @@ public class MH
     /// <param name="b"></param>
     public static int LCF(int a, int b)
     {
-        for (var i = 2;; i++)
-            if (a % i == 0 && b % i == 0)
-                return i;
+        for (var divisor = 2;; divisor++)
+            if (a % divisor == 0 && b % divisor == 0)
+                return divisor;
         // Here was originally return 1 but C# compiler marked this as useless
     }
 }

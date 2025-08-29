@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers;
 
 public class NumberService
@@ -7,36 +8,36 @@ public class NumberService
         input = HttpUtility.HtmlDecode(input).Replace(" ", "").RemoveInvisibleChars().RemoveWhitespaceChars();
         // Zkopíroval jsem znak –. Ále ani s ním mi to nevracelo true. Musí to být zapsané jako číslo.
         var enDash = (char)8211;
-        var b = input.Contains(enDash);
-        if (input.Contains("-") || b)
+        var containsEnDash = input.Contains(enDash);
+        if (input.Contains("-") || containsEnDash)
         {
-            bool isNeg = false;
+            bool isNegative = false;
             if (input[0] == '-')
             {
-                isNeg = true;
+                isNegative = true;
                 input = input.Substring(1);
             }
-            int first = 0;
-            uint second = 0;
-            var p = input.Split('-', enDash);
-            var tp = p[0].Trim().ToCharArray();
-            var b1 = int.TryParse(tp, out first);
-            if (isNeg)
+            int firstNumber = 0;
+            uint secondNumber = 0;
+            var parts = input.Split('-', enDash);
+            var firstPartChars = parts[0].Trim().ToCharArray();
+            var firstParseSuccess = int.TryParse(firstPartChars, out firstNumber);
+            if (isNegative)
             {
-                first *= -1;
+                firstNumber *= -1;
             }
-            var b2 = uint.TryParse(p[1].Trim(), out second);
-            if (b1 && b2)
+            var secondParseSuccess = uint.TryParse(parts[1].Trim(), out secondNumber);
+            if (firstParseSuccess && secondParseSuccess)
             {
-                return (null, new Interval { From = first, To = second });
+                return (null, new Interval { From = firstNumber, To = secondNumber });
             }
             return (null, null);
         }
         else
         {
-            if (int.TryParse(input, out var val))
+            if (int.TryParse(input, out var parsedValue))
             {
-                return (val, null);
+                return (parsedValue, null);
             }
         }
         return null;

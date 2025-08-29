@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers.Tests;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,11 @@ public class NumberServiceTests
         //6
         NumberService numberService = new SunamoNumbers.NumberService();
 
-        var d = numberService.ParseInterval("120 000 ‍–‍ 150 000");
-        var r = numberService.ParseInterval("150 000");
+        var intervalResult = numberService.ParseInterval("120 000 ‍–‍ 150 000");
+        var singleValueResult = numberService.ParseInterval("150 000");
 
-        var a = d.Value.Item2.IsNumberInRange(200000);
-        var b = d.Value.Item2.IsNumberInRange(100000);
-        var c = d.Value.Item2.IsNumberInRange(150000);
+        var isOutOfRangeHigh = intervalResult.Value.Item2.IsNumberInRange(200000);
+        var isOutOfRangeLow = intervalResult.Value.Item2.IsNumberInRange(100000);
+        var isInRange = intervalResult.Value.Item2.IsNumberInRange(150000);
     }
 }

@@ -1,15 +1,16 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers._public.SunamoData;
 
 
 public class MedianAverage<T>
 {
-    public T median;
-    public T average;
-    public T min;
-    public T max;
-    public int count;
+    public T medianValue;
+    public T averageValue;
+    public T minimumValue;
+    public T maximumValue;
+    public int elementCount;
     public override string ToString()
     {
-        return $"Count: {count}, Median: {median}, Average: {average}, Min: {min}, Max: {max}";
+        return $"Count: {elementCount}, Median: {medianValue}, Average: {averageValue}, Min: {minimumValue}, Max: {maximumValue}";
     }
 }

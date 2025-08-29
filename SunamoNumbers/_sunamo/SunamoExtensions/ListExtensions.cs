@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers._sunamo.SunamoExtensions;
 internal static class ListExtensions
 {

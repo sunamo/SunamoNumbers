@@ -1,3 +1,4 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers._sunamo.SunamoExceptions;
 // © www.sunamo.cz. All Rights Reserved.
 internal sealed partial class Exceptions

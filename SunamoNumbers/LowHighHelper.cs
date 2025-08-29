@@ -1,22 +1,23 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers;
 
 public class LowHighHelper
 {
-    private int low = int.MaxValue;
-    private int max = int.MinValue;
+    private int minimum = int.MaxValue;
+    private int maximum = int.MinValue;
 
-    public void Set(int t)
+    public void Set(int value)
     {
-        if (t < low) low = t;
+        if (value < minimum) minimum = value;
 
-        if (t > max) max = t;
+        if (value > maximum) maximum = value;
     }
 
 #if DEBUG2
     public void PrintDebug()
     {
-        DebugLogger.Instance.WriteLine("Low: ", low);
-        DebugLogger.Instance.WriteLine("High: ", max);
+        DebugLogger.Instance.WriteLine("Low: ", minimum);
+        DebugLogger.Instance.WriteLine("High: ", maximum);
     }
 #endif
 }

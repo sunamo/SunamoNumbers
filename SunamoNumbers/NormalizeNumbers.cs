@@ -1,43 +1,44 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers;
 
 public static class NormalizeNumbers
 {
-    private static readonly long intMax = int.MaxValue;
-    private static readonly long one = 1;
+    private static readonly long integerMaximumValue = int.MaxValue;
+    private static readonly long offsetValue = 1;
 
-    public static uint NormalizeInt(int p)
+    public static uint NormalizeInt(int inputValue)
     {
-        //long p2 = (long)p;
+        //long inputValueAsLong = (long)inputValue;
 
-        var nt = (uint)(p + intMax + one);
-        //nt++;
-        return nt;
+        var normalizedValue = (uint)(inputValue + integerMaximumValue + offsetValue);
+        //normalizedValue++;
+        return normalizedValue;
     }
 
 
-    public static ushort NormalizeShort(short p)
+    public static ushort NormalizeShort(short inputValue)
     {
-        int p2 = p;
-        int sm = short.MaxValue;
-        var nt = (ushort)(p2 + sm + 1);
-        //nt++;
-        return nt;
+        int inputAsInt = inputValue;
+        int shortMaximumValue = short.MaxValue;
+        var normalizedValue = (ushort)(inputAsInt + shortMaximumValue + 1);
+        //normalizedValue++;
+        return normalizedValue;
     }
 
-    public static ulong NormalizeLong(long p)
+    public static ulong NormalizeLong(long inputValue)
     {
-        decimal p2 = p;
-        decimal sm = long.MaxValue;
-        var nt = (ulong)(p2 + sm + 1m);
-        //nt++;
-        return nt;
+        decimal inputAsDecimal = inputValue;
+        decimal longMaximumValue = long.MaxValue;
+        var normalizedValue = (ulong)(inputAsDecimal + longMaximumValue + 1m);
+        //normalizedValue++;
+        return normalizedValue;
     }
 
-    public static uint BytesToMegabytes(int size)
+    public static uint BytesToMegabytes(int sizeInBytes)
     {
-        var normalized = NormalizeInt(size);
-        normalized /= 1024;
-        normalized /= 1024;
-        return normalized;
+        var normalizedSize = NormalizeInt(sizeInBytes);
+        normalizedSize /= 1024;
+        normalizedSize /= 1024;
+        return normalizedSize;
     }
 }

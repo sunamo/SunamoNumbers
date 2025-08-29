@@ -1,88 +1,89 @@
+// Instance variables refactored according to C# conventions
 namespace SunamoNumbers._sunamo.SunamoBts;
 
 internal class BTS
 {
-    internal static string? ToString<T>(T t)
+    internal static string? ToString<T>(T value)
     {
-        return t.ToString();
+        return value.ToString();
     }
 
     internal static object MethodForParse<T1>()
     {
-        var t = typeof(T1);
+        var targetType = typeof(T1);
         #region Same seria as in DefaultValueForTypeT
         #region MyRegion
-        if (t == Types.tString)
+        if (targetType == Types.tString)
         {
             return new Func<string, string>(ToString<string>);
         }
-        if (t == Types.tBool)
+        if (targetType == Types.tBool)
         {
             return new Func<string, bool>(bool.Parse);
         }
         #endregion
 
         #region Signed numbers
-        if (t == Types.tFloat)
+        if (targetType == Types.tFloat)
         {
             return new Func<string, float>(float.Parse);
         }
-        if (t == Types.tDouble)
+        if (targetType == Types.tDouble)
         {
             return new Func<string, double>(double.Parse);
         }
-        if (t == typeof(int))
+        if (targetType == typeof(int))
         {
             return new Func<string, int>(int.Parse);
         }
-        if (t == Types.tLong)
+        if (targetType == Types.tLong)
         {
             return new Func<string, long>(long.Parse);
         }
-        if (t == Types.tShort)
+        if (targetType == Types.tShort)
         {
             return new Func<string, short>(short.Parse);
         }
-        if (t == Types.tDecimal)
+        if (targetType == Types.tDecimal)
         {
             return new Func<string, decimal>(decimal.Parse);
         }
-        if (t == Types.tSbyte)
+        if (targetType == Types.tSbyte)
         {
             return new Func<string, sbyte>(sbyte.Parse);
         }
         #endregion
 
         #region Unsigned numbers
-        if (t == Types.tByte)
+        if (targetType == Types.tByte)
         {
             return new Func<string, byte>(byte.Parse);
         }
-        if (t == Types.tUshort)
+        if (targetType == Types.tUshort)
         {
             return new Func<string, ushort>(ushort.Parse);
         }
-        if (t == Types.tUint)
+        if (targetType == Types.tUint)
         {
             return new Func<string, uint>(uint.Parse);
         }
-        if (t == Types.tUlong)
+        if (targetType == Types.tUlong)
         {
             return new Func<string, ulong>(ulong.Parse);
         }
         #endregion
 
-        if (t == Types.tDateTime)
+        if (targetType == Types.tDateTime)
         {
             return new Func<string, DateTime>(DateTime.Parse);
         }
-        if (t == Types.tGuid)
+        if (targetType == Types.tGuid)
         {
             return new Func<string, Guid>(Guid.Parse);
         }
-        if (t == Types.tChar)
+        if (targetType == Types.tChar)
         {
-            return new Func<string, char>((string s) => s[0]);
+            return new Func<string, char>((string stringValue) => stringValue[0]);
         }
 
         #endregion
@@ -90,17 +91,17 @@ internal class BTS
         return new object();
     }
 
-    internal static int ParseInt(string entry, int _default)
+    internal static int ParseInt(string inputEntry, int defaultValue)
     {
-        //entry = SH.FromSpace160To32(entry);
-        entry = entry.Replace(" ", string.Empty);
-        //var ch = entry[3];
+        //inputEntry = SH.FromSpace160To32(inputEntry);
+        inputEntry = inputEntry.Replace(" ", string.Empty);
+        //var characterAtIndex3 = inputEntry[3];
 
-        int lastInt2 = 0;
-        if (int.TryParse(entry, out lastInt2))
+        int parsedInteger = 0;
+        if (int.TryParse(inputEntry, out parsedInteger))
         {
-            return lastInt2;
+            return parsedInteger;
         }
-        return _default;
+        return defaultValue;
     }
 }
