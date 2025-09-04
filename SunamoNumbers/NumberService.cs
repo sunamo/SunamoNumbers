@@ -6,6 +6,7 @@ public class NumberService
     public (int?, Interval?)? ParseInterval(string input)
     {
         input = HttpUtility.HtmlDecode(input).Replace(" ", "").RemoveInvisibleChars().RemoveWhitespaceChars();
+        
         // Zkopíroval jsem znak –. Ále ani s ním mi to nevracelo true. Musí to být zapsané jako číslo.
         var enDash = (char)8211;
         var containsEnDash = input.Contains(enDash);
