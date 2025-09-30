@@ -1,4 +1,6 @@
-// Instance variables refactored according to C# conventions
+﻿// Instance variables refactored according to C# conventions
+using Xunit;
+
 namespace sunamo.Tests.Helpers.Numbers;
 public class NHTests
 {
