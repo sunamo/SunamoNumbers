@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 // Instance variables refactored according to C# conventions
 namespace SunamoNumbers;
 
@@ -20,10 +23,10 @@ public static class NH
         return intervalList;
     }
 
-    public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> l, bool throwExIfOnlyOneElement)
+    public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> list, bool throwExIfOnlyOneElement)
     {
         MedianAverage<double> medianAverageResult = null;
-        var result = CalculateMedianAverage(l, out medianAverageResult, throwExIfOnlyOneElement);
+        var result = CalculateMedianAverage(list, out medianAverageResult, throwExIfOnlyOneElement);
         return (result, medianAverageResult);
     }
 
@@ -32,7 +35,7 @@ public static class NH
     /// </summary>
     public static string CalculateMedianAverageT(List<double> list, out MedianAverage<double> medianAverage)
     {
-        list.RemoveAll(d => d == 0);
+        list.RemoveAll(data => data == 0);
 
         ThrowEx.OnlyOneElement("list", list);
 
@@ -160,7 +163,7 @@ public static class NH
 
     public static string CalculateMedianAverage(List<double> list, out MedianAverage<double> medianAverage, bool throwExIfOnlyOneElement)
     {
-        list.RemoveAll(d => d == 0);
+        list.RemoveAll(data => data == 0);
 
         if (list.Count == 0)
         {
@@ -216,22 +219,22 @@ public static class NH
         return list.NthOrderStatistic((list.Count - 1) / 2);
     }
 
-    public static (int, string) NumberIntUntilWontReachOtherChar(string s)
+    public static (int, string) NumberIntUntilWontReachOtherChar(string text)
     {
         var numberStringBuilder = new StringBuilder();
 
-        for (var index = 0; index < s.Length; index++)
-            if (char.IsNumber(s[index]))
-                numberStringBuilder.Append(s[index]);
+        for (var index = 0; index < text.Length; index++)
+            if (char.IsNumber(text[index]))
+                numberStringBuilder.Append(text[index]);
             else
                 break;
 
         var result = numberStringBuilder.ToString();
 
-        s = SH.ReplaceOnce(s, result, string.Empty);
+        text = SH.ReplaceOnce(text, result, string.Empty);
 
 
-        return (BTS.ParseInt(result, int.MaxValue), s);
+        return (BTS.ParseInt(result, int.MaxValue), text);
     }
 
     /// <summary>
@@ -276,8 +279,8 @@ public static class NH
         double result = 0;
         foreach (var item in list)
         {
-            var d = double.Parse(item);
-            result += d;
+            var data = double.Parse(item);
+            result += data;
         }
 
         return result;
@@ -330,9 +333,9 @@ public static class NH
         return shortIntervalList;
     }
 
-    public static double ReturnTheNearestSmallIntegerNumber(double d)
+    public static double ReturnTheNearestSmallIntegerNumber(double data)
     {
-        return Convert.ToInt32(d);
+        return Convert.ToInt32(data);
     }
 
     public static List<int> Invert(List<int> arr, int changeTo, int finalCount)
