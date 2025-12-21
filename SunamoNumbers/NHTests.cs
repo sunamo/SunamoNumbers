@@ -1,9 +1,7 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
-﻿// Instance variables refactored according to C# conventions
+namespace SunamoNumbers;
+
 using Xunit;
 
-namespace sunamo.Tests.Helpers.Numbers;
 public class NHTests
 {
     public readonly static List<int> testInput = [4, 0];// 4, 4, 4, 3, 0, 0, 0, 0);

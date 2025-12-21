@@ -1,7 +1,8 @@
+namespace SunamoNumbers;
+
 // EN: Variable names have been checked and replaced with self-descriptive names
 // CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 // Instance variables refactored according to C# conventions
-namespace SunamoNumbers;
 public static partial class NH
 {
     private static Type currentType = typeof(NH);

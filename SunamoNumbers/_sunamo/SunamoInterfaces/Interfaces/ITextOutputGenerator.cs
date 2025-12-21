@@ -1,6 +1,4 @@
-// Instance variables refactored according to C# conventions
 namespace SunamoNumbers._sunamo.SunamoInterfaces.Interfaces;
-
 
 internal interface ITextOutputGenerator
 {
