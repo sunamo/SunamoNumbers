@@ -1,35 +1,42 @@
 namespace SunamoNumbers._sunamo.SunamoExceptions;
 
-// Instance variables refactored according to C# conventions
-// © www.sunamo.cz. All Rights Reserved.
+/// <summary>
+/// Provides exception message formatting and stack trace analysis utilities.
+/// </summary>
 internal sealed partial class Exceptions
 {
-    #region Other
+    /// <summary>
+    /// Checks and formats a prefix string for exception messages.
+    /// </summary>
+    /// <param name="before">The prefix to check.</param>
     internal static string CheckBefore(string before)
     {
         return string.IsNullOrWhiteSpace(before) ? string.Empty : before + ": ";
     }
 
-    internal static Tuple<string, string, string> PlaceOfException(
-bool fillAlsoFirstTwo = true)
+    /// <summary>
+    /// Extracts the type, method name, and full stack trace from the current call stack.
+    /// </summary>
+    /// <param name="shouldFillFirstTwo">Whether to also extract the type and method name from the first non-ThrowEx frame.</param>
+    internal static Tuple<string, string, string> PlaceOfException(bool shouldFillFirstTwo = true)
     {
-        StackTrace st = new();
-        var value = st.ToString();
-        var lines = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        StackTrace stackTrace = new();
+        var stackTraceText = stackTrace.ToString();
+        var lines = stackTraceText.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
         lines.RemoveAt(0);
-        var i = 0;
+        var index = 0;
         string type = string.Empty;
         string methodName = string.Empty;
-        for (; i < lines.Count; i++)
+        for (; index < lines.Count; index++)
         {
-            var item = lines[i];
-            if (fillAlsoFirstTwo)
-                if (!item.StartsWith("   at ThrowEx"))
+            var line = lines[index];
+            if (shouldFillFirstTwo)
+                if (!line.StartsWith("   at ThrowEx"))
                 {
-                    TypeAndMethodName(item, out type, out methodName);
-                    fillAlsoFirstTwo = false;
+                    TypeAndMethodName(line, out type, out methodName);
+                    shouldFillFirstTwo = false;
                 }
-            if (item.StartsWith("at System."))
+            if (line.StartsWith("at System."))
             {
                 lines.Add(string.Empty);
                 lines.Add(string.Empty);
@@ -38,19 +45,31 @@ bool fillAlsoFirstTwo = true)
         }
         return new Tuple<string, string, string>(type, methodName, string.Join(Environment.NewLine, lines));
     }
-    internal static void TypeAndMethodName(string lines, out string type, out string methodName)
+
+    /// <summary>
+    /// Extracts the type and method name from a stack trace line.
+    /// </summary>
+    /// <param name="line">The stack trace line to parse.</param>
+    /// <param name="type">The extracted type name.</param>
+    /// <param name="methodName">The extracted method name.</param>
+    internal static void TypeAndMethodName(string line, out string type, out string methodName)
     {
-        var s2 = lines.Split("at ")[1].Trim();
-        var text = s2.Split("(")[0];
-        var parameter = text.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-        methodName = parameter[^1];
-        parameter.RemoveAt(parameter.Count - 1);
-        type = string.Join(".", parameter);
+        var frameText = line.Split("at ")[1].Trim();
+        var fullMethodPath = frameText.Split('(')[0];
+        var pathParts = fullMethodPath.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        methodName = pathParts[^1];
+        pathParts.RemoveAt(pathParts.Count - 1);
+        type = string.Join(".", pathParts);
     }
-    internal static string CallingMethod(int value = 1)
+
+    /// <summary>
+    /// Gets the name of the calling method at the specified stack depth.
+    /// </summary>
+    /// <param name="depth">The stack frame depth.</param>
+    internal static string CallingMethod(int depth = 1)
     {
         StackTrace stackTrace = new();
-        var methodBase = stackTrace.GetFrame(value)?.GetMethod();
+        var methodBase = stackTrace.GetFrame(depth)?.GetMethod();
         if (methodBase == null)
         {
             return "Method name cannot be get";
@@ -58,28 +77,35 @@ bool fillAlsoFirstTwo = true)
         var methodName = methodBase.Name;
         return methodName;
     }
-    #endregion
 
-    #region IsNullOrWhitespace
-    readonly static StringBuilder sbAdditionalInfoInner = new();
-    readonly static StringBuilder sbAdditionalInfo = new();
-    #endregion
-    internal static string? OnlyOneElement(string before, string colName, ICollection list)
+    /// <summary>
+    /// Creates an error message when a collection has only one element.
+    /// </summary>
+    /// <param name="before">The prefix for the message.</param>
+    /// <param name="collectionName">The name of the collection.</param>
+    /// <param name="collection">The collection to check.</param>
+    internal static string? OnlyOneElement(string before, string collectionName, ICollection collection)
     {
-        return list.Count == 1 ? CheckBefore(before) + colName + " has only one element" : null;
+        return collection.Count == 1 ? CheckBefore(before) + collectionName + " has only one element" : null;
     }
+
+    /// <summary>
+    /// Creates an error message for a not-implemented case.
+    /// </summary>
+    /// <param name="before">The prefix for the message.</param>
+    /// <param name="notImplementedName">The name or type that is not implemented.</param>
     internal static string? NotImplementedCase(string before, object notImplementedName)
     {
-        var fr = string.Empty;
+        var forClause = string.Empty;
         if (notImplementedName != null)
         {
-            fr = " for ";
+            forClause = " for ";
             if (notImplementedName.GetType() == typeof(Type))
-                fr += ((Type)notImplementedName).FullName;
+                forClause += ((Type)notImplementedName).FullName;
             else
-                fr += notImplementedName.ToString();
+                forClause += notImplementedName.ToString();
         }
-        return CheckBefore(before) + "Not implemented case" + fr + " . internal program error. Please contact developer" +
+        return CheckBefore(before) + "Not implemented case" + forClause + " . internal program error. Please contact developer" +
         ".";
     }
 }

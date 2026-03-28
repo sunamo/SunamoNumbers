@@ -1,27 +1,33 @@
 namespace SunamoNumbers._sunamo.SunamoValues.Constants;
 
+/// <summary>
+/// Provides commonly used numeric constants.
+/// </summary>
 internal class NumConsts
 {
-    #region For easy copy
-    internal const int mOne = -1;
-    #endregion
-    internal const int defaultPortIfCannotBeParsed = 587;
+    internal const int MinusOne = -1;
+    internal const int DefaultPortIfCannotBeParsed = 587;
+
     /// <summary>
-    /// Min age is 18 due to GDPR - below 18 is needed parent agreement of child
+    /// Minimum age is 18 due to GDPR - below 18 requires parent agreement.
     /// </summary>
     internal const int MinAge = 18;
-    internal static short nDtMinVal = 10101;
-    internal static short nDtMaxVal = 32271;
+
+    internal const short DateTimeShortMinValue = 10101;
+    internal const short DateTimeShortMaxValue = 32271;
+
     /// <summary>
-    /// one thousand
+    /// One thousand.
     /// </summary>
-    internal static int to = 1000;
-    internal const long kB = 1024;
-    internal const double zeroDouble = 0;
-    internal const float zeroFloat = 0;
+    internal const int OneThousand = 1000;
+
+    internal const long Kilobyte = 1024;
+    internal const double ZeroDouble = 0;
+    internal const float ZeroFloat = 0;
+
     /// <summary>
-    /// at int should be no postfix
+    /// Integer value one.
     /// </summary>
-    internal const int one = 1;
-    internal const int zeroInt = 0;
+    internal const int One = 1;
+    internal const int ZeroInt = 0;
 }

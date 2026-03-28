@@ -1,33 +1,42 @@
 namespace SunamoNumbers._sunamo.SunamoBts;
 
+/// <summary>
+/// Provides basic type system utilities for parsing and type conversion.
+/// </summary>
 internal class BTS
 {
+    /// <summary>
+    /// Converts a value to its string representation.
+    /// </summary>
+    /// <typeparam name="T">The type of the value.</typeparam>
+    /// <param name="value">The value to convert.</param>
     internal static string? ToString<T>(T value)
     {
-        return value.ToString();
+        return value?.ToString();
     }
 
-    internal static object MethodForParse<T1>()
+    /// <summary>
+    /// Returns the appropriate parse function for the specified type.
+    /// </summary>
+    /// <typeparam name="T">The target type to get a parser for.</typeparam>
+    internal static object MethodForParse<T>()
     {
-        var targetType = typeof(T1);
-        #region Same seria as in DefaultValueForTypeT
-        #region MyRegion
-        if (targetType == Types.tString)
+        var targetType = typeof(T);
+
+        if (targetType == Types.StringType)
         {
-            return new Func<string, string>(ToString<string>);
+            return new Func<string, string>(ToString<string>!);
         }
-        if (targetType == Types.tBool)
+        if (targetType == Types.BoolType)
         {
             return new Func<string, bool>(bool.Parse);
         }
-        #endregion
 
-        #region Signed numbers
-        if (targetType == Types.tFloat)
+        if (targetType == Types.FloatType)
         {
             return new Func<string, float>(float.Parse);
         }
-        if (targetType == Types.tDouble)
+        if (targetType == Types.DoubleType)
         {
             return new Func<string, double>(double.Parse);
         }
@@ -35,69 +44,67 @@ internal class BTS
         {
             return new Func<string, int>(int.Parse);
         }
-        if (targetType == Types.tLong)
+        if (targetType == Types.LongType)
         {
             return new Func<string, long>(long.Parse);
         }
-        if (targetType == Types.tShort)
+        if (targetType == Types.ShortType)
         {
             return new Func<string, short>(short.Parse);
         }
-        if (targetType == Types.tDecimal)
+        if (targetType == Types.DecimalType)
         {
             return new Func<string, decimal>(decimal.Parse);
         }
-        if (targetType == Types.tSbyte)
+        if (targetType == Types.SbyteType)
         {
             return new Func<string, sbyte>(sbyte.Parse);
         }
-        #endregion
 
-        #region Unsigned numbers
-        if (targetType == Types.tByte)
+        if (targetType == Types.ByteType)
         {
             return new Func<string, byte>(byte.Parse);
         }
-        if (targetType == Types.tUshort)
+        if (targetType == Types.UshortType)
         {
             return new Func<string, ushort>(ushort.Parse);
         }
-        if (targetType == Types.tUint)
+        if (targetType == Types.UintType)
         {
             return new Func<string, uint>(uint.Parse);
         }
-        if (targetType == Types.tUlong)
+        if (targetType == Types.UlongType)
         {
             return new Func<string, ulong>(ulong.Parse);
         }
-        #endregion
 
-        if (targetType == Types.tDateTime)
+        if (targetType == Types.DateTimeType)
         {
             return new Func<string, DateTime>(DateTime.Parse);
         }
-        if (targetType == Types.tGuid)
+        if (targetType == Types.GuidType)
         {
             return new Func<string, Guid>(Guid.Parse);
         }
-        if (targetType == Types.tChar)
+        if (targetType == Types.CharType)
         {
-            return new Func<string, char>((string stringValue) => stringValue[0]);
+            return new Func<string, char>((string text) => text[0]);
         }
-
-        #endregion
 
         return new object();
     }
 
-    internal static int ParseInt(string inputEntry, int defaultValue)
+    /// <summary>
+    /// Parses a string to an integer, returning a default value on failure.
+    /// </summary>
+    /// <param name="text">The text to parse.</param>
+    /// <param name="defaultValue">The default value if parsing fails.</param>
+    internal static int ParseInt(string text, int defaultValue)
     {
-        //inputEntry = SH.FromSpace160To32(inputEntry);
-        inputEntry = inputEntry.Replace(" ", string.Empty);
-        //var characterAtIndex3 = inputEntry[3];
+        text = text.Replace(" ", string.Empty);
 
         int parsedInteger = 0;
-        if (int.TryParse(inputEntry, out parsedInteger))
+        if (int.TryParse(text, out parsedInteger))
         {
             return parsedInteger;
         }
