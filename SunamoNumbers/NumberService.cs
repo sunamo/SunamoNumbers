@@ -28,7 +28,7 @@ public class NumberService
             uint secondNumber = 0;
             var parts = input.Split('-', enDash);
             var firstPartChars = parts[0].Trim().ToCharArray();
-            var firstParseSuccess = int.TryParse(firstPartChars, out firstNumber);
+            var firstParseSuccess = int.TryParse(new string(firstPartChars), out firstNumber);
             if (isNegative)
             {
                 firstNumber *= -1;

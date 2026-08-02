@@ -54,7 +54,7 @@ internal sealed partial class Exceptions
     /// <param name="methodName">The extracted method name.</param>
     internal static void TypeAndMethodName(string line, out string type, out string methodName)
     {
-        var frameText = line.Split("at ")[1].Trim();
+        var frameText = line.Split(new[] { "at " }, StringSplitOptions.None)[1].Trim();
         var fullMethodPath = frameText.Split('(')[0];
         var pathParts = fullMethodPath.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         methodName = pathParts[^1];
