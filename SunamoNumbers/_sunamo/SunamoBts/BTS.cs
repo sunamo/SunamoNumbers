@@ -1,12 +1,24 @@
 namespace SunamoNumbers._sunamo.SunamoBts;
 
+/// <summary>
+/// Provides basic type system utilities for parsing and type conversion.
+/// </summary>
 internal class BTS
 {
+    /// <summary>
+    /// Converts a value to its string representation.
+    /// </summary>
+    /// <typeparam name="T">The type of the value.</typeparam>
+    /// <param name="value">The value to convert.</param>
     internal static string? ToString<T>(T value)
     {
         return value?.ToString();
     }
 
+    /// <summary>
+    /// Returns the appropriate parse function for the specified type.
+    /// </summary>
+    /// <typeparam name="T">The target type to get a parser for.</typeparam>
     internal static object MethodForParse<T>()
     {
         var targetType = typeof(T);
@@ -82,6 +94,11 @@ internal class BTS
         return new object();
     }
 
+    /// <summary>
+    /// Parses a string to an integer, returning a default value on failure.
+    /// </summary>
+    /// <param name="text">The text to parse.</param>
+    /// <param name="defaultValue">The default value if parsing fails.</param>
     internal static int ParseInt(string text, int defaultValue)
     {
         text = text.Replace(" ", string.Empty);
