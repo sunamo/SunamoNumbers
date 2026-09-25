@@ -38,7 +38,7 @@ internal partial class ThrowEx
     /// <param name="isFromThrowEx">Whether the call originates from ThrowEx.</param>
     private static string FullNameOfExecutedCode(object type, string methodName, bool isFromThrowEx = false)
     {
-        if (methodName == null)
+        if (methodName is null)
         {
             int depth = 2;
             if (isFromThrowEx)
@@ -77,7 +77,7 @@ internal partial class ThrowEx
     /// <param name="shouldReallyThrow">Whether to actually throw the exception.</param>
     internal static bool ThrowIsNotNull(string? exception, bool shouldReallyThrow = true)
     {
-        if (exception != null)
+        if (exception is not null)
         {
             Debugger.Break();
             if (shouldReallyThrow)

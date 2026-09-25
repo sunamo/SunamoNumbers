@@ -103,8 +103,7 @@ internal class BTS
     {
         text = text.Replace(" ", string.Empty);
 
-        int parsedInteger = 0;
-        if (int.TryParse(text, out parsedInteger))
+        if (int.TryParse(text, out int parsedInteger))
         {
             return parsedInteger;
         }

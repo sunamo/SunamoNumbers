@@ -54,7 +54,7 @@ internal sealed partial class Exceptions
     /// <param name="methodName">The extracted method name.</param>
     internal static void TypeAndMethodName(string line, out string type, out string methodName)
     {
-        var frameText = line.Split("at ")[1].Trim();
+        var frameText = line.Split(new[] { "at " }, StringSplitOptions.None)[1].Trim();
         var fullMethodPath = frameText.Split('(')[0];
         var pathParts = fullMethodPath.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         methodName = pathParts[^1];
@@ -70,7 +70,7 @@ internal sealed partial class Exceptions
     {
         StackTrace stackTrace = new();
         var methodBase = stackTrace.GetFrame(depth)?.GetMethod();
-        if (methodBase == null)
+        if (methodBase is null)
         {
             return "Method name cannot be get";
         }
@@ -97,7 +97,7 @@ internal sealed partial class Exceptions
     internal static string? NotImplementedCase(string before, object notImplementedName)
     {
         var forClause = string.Empty;
-        if (notImplementedName != null)
+        if (notImplementedName is not null)
         {
             forClause = " for ";
             if (notImplementedName.GetType() == typeof(Type))
