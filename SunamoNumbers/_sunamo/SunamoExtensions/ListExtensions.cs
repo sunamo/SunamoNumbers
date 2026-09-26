@@ -31,7 +31,7 @@ internal static class ListExtensions
     /// <param name="random">Optional random number generator for pivot selection.</param>
     internal static int Partition<T>(this IList<T> list, int start, int end, Random? random = null) where T : IComparable<T>
     {
-        if (random != null)
+        if (random is not null)
             list.Swap(end, random.Next(start, end + 1));
         var pivot = list[end];
         var lastLow = start - 1;

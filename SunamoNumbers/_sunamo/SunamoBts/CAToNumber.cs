@@ -14,7 +14,7 @@ internal class CAToNumber
     /// <param name="list">The source list of elements to convert.</param>
     internal static List<T> ToNumber<T, U>(Func<string, T> parse, IList<U> list)
     {
-        List<T> result = new List<T>();
+        var result = new List<T>();
         foreach (var item in list)
         {
             if (item?.ToString() == "NA")
