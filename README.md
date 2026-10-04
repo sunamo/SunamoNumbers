@@ -1,5 +1,10 @@
 # SunamoNumbers
 
+## Short description
+
+Knihovna číselných operací: statistické výpočty (medián, průměr), normalizace čísel, parsování intervalů a matematické pomůcky. Obsahuje Runner a testy.
+
+
 A platform-independent .NET library for numeric operations including statistical calculations, number normalization, interval parsing, and mathematical utilities.
 
 ## Features
