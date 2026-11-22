@@ -6,6 +6,23 @@ namespace SunamoNumbers;
 public static partial class NH
 {
     /// <summary>
+    /// Parses an interval written as "first-second" into two unsigned numbers; returns null when the text has no dash, a part that is not a number becomes 0.
+    /// </summary>
+    /// <param name="text">The text, for example "25-30".</param>
+    /// <returns>The two bounds, or null when the text is not an interval.</returns>
+    public static (uint From, uint To)? ParseUIntInterval(string text)
+    {
+        if (text.IndexOf('-') < 0)
+        {
+            return null;
+        }
+
+        var parts = text.Split('-');
+        uint.TryParse(parts[0], out var from);
+        uint.TryParse(parts[1], out var to);
+        return (from, to);
+    }
+    /// <summary>
     /// Generate interval int.
     /// </summary>
     /// <param name="from">The from.</param>
