@@ -1,8 +1,17 @@
 namespace SunamoNumbers;
 
 // Math Helper - provides greatest common factor and lowest common factor calculations.
+/// <summary>
+/// Represents the MH type.
+/// </summary>
 public class MH
 {
+    /// <summary>
+    /// HCF.
+    /// </summary>
+    /// <param name="firstNumber">The first number.</param>
+    /// <param name="secondNumber">The second number.</param>
+    /// <returns>The HCF result.</returns>
     public static int HCF(int firstNumber, int secondNumber)
     {
         if (firstNumber == 0 || secondNumber == 0)
@@ -20,6 +29,12 @@ public class MH
         return highestCommonFactor;
     }
 
+    /// <summary>
+    /// LCF.
+    /// </summary>
+    /// <param name="firstNumber">The first number.</param>
+    /// <param name="secondNumber">The second number.</param>
+    /// <returns>The LCF result.</returns>
     public static int LCF(int firstNumber, int secondNumber)
     {
         for (var divisor = 2; ; divisor++)

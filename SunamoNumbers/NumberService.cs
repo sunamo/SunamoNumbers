@@ -1,7 +1,15 @@
 namespace SunamoNumbers;
 
+/// <summary>
+/// Represents the number service type.
+/// </summary>
 public class NumberService
 {
+    /// <summary>
+    /// Initializes a new instance of the parse interval class.
+    /// </summary>
+    /// <param name="int?">The int.</param>
+    /// <param name="Interval?">The interval.</param>
     public (int?, Interval?)? ParseInterval(string input)
     {
         input = HttpUtility.HtmlDecode(input).Replace(" ", "").RemoveInvisibleChars().RemoveWhitespaceChars();

@@ -1,7 +1,33 @@
 namespace SunamoNumbers;
 
+/// <summary>
+/// Represents the NH type.
+/// </summary>
 public static partial class NH
 {
+    /// <summary>
+    /// Parses an interval written as "first-second" into two unsigned numbers; returns null when the text has no dash, a part that is not a number becomes 0.
+    /// </summary>
+    /// <param name="text">The text, for example "25-30".</param>
+    /// <returns>The two bounds, or null when the text is not an interval.</returns>
+    public static (uint From, uint To)? ParseUIntInterval(string text)
+    {
+        if (text.IndexOf('-') < 0)
+        {
+            return null;
+        }
+
+        var parts = text.Split('-');
+        uint.TryParse(parts[0], out var from);
+        uint.TryParse(parts[1], out var to);
+        return (from, to);
+    }
+    /// <summary>
+    /// Generate interval int.
+    /// </summary>
+    /// <param name="from">The from.</param>
+    /// <param name="to">The to.</param>
+    /// <returns>The generate interval int result.</returns>
     public static List<int> GenerateIntervalInt(int from, int to)
     {
         var intervalList = new List<int>();
@@ -11,6 +37,11 @@ public static partial class NH
         return intervalList;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the calculate median average no out class.
+    /// </summary>
+    /// <param name="string">The string.</param>
+    /// <param name="MedianAverage<double>">The median average double.</param>
     public static (string, MedianAverage<double>) CalculateMedianAverageNoOut(List<float> list, bool shouldThrowOnSingleElement)
     {
         MedianAverage<double> medianAverageResult = null!;
@@ -18,6 +49,12 @@ public static partial class NH
         return (result, medianAverageResult);
     }
 
+    /// <summary>
+    /// Calculate median average t.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="medianAverage">The median average.</param>
+    /// <returns>The calculate median average t result.</returns>
     public static string CalculateMedianAverageT(List<double> list, out MedianAverage<double> medianAverage)
     {
         list.RemoveAll(value => value == 0);
@@ -31,24 +68,48 @@ public static partial class NH
         return medianAverage.ToString();
     }
 
+    /// <summary>
+    /// Calculate median average.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="medianAverage">The median average.</param>
+    /// <param name="shouldThrowOnSingleElement">The should throw on single element.</param>
+    /// <returns>The calculate median average result.</returns>
     public static string CalculateMedianAverage(List<float> list, out MedianAverage<double> medianAverage, bool shouldThrowOnSingleElement)
     {
         var doubleList = CAToNumber.ToNumber(double.Parse, list);
         return CalculateMedianAverage(doubleList, out medianAverage, shouldThrowOnSingleElement);
     }
 
+    /// <summary>
+    /// Calculate median average.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="shouldThrowOnSingleElement">The should throw on single element.</param>
+    /// <returns>The calculate median average result.</returns>
     public static string CalculateMedianAverage(List<long> list, bool shouldThrowOnSingleElement)
     {
         var doubleList = CAToNumber.ToNumber(double.Parse, list);
         return CalculateMedianAverage(doubleList, shouldThrowOnSingleElement);
     }
 
+    /// <summary>
+    /// Round and return in input type.
+    /// </summary>
+    /// <param name="value">The value.</param>
+    /// <param name="decimalPlaces">The decimal places.</param>
+    /// <returns>The round and return in input type result.</returns>
     public static float RoundAndReturnInInputType(float value, int decimalPlaces)
     {
         var roundedValue = Math.Round(value, decimalPlaces).ToString();
         return float.Parse(roundedValue);
     }
 
+    /// <summary>
+    /// Last 2 number byte.
+    /// </summary>
+    /// <param name="year">The year.</param>
+    /// <returns>The last 2 number byte result.</returns>
     public static byte Last2NumberByte(int year)
     {
         var yearString = year.ToString();
@@ -56,11 +117,22 @@ public static partial class NH
         return byte.Parse(yearString);
     }
 
+    /// <summary>
+    /// Divide.
+    /// </summary>
+    /// <param name="dividend">The dividend.</param>
+    /// <param name="divisor">The divisor.</param>
+    /// <returns>The divide result.</returns>
     public static double Divide(object dividend, object divisor)
     {
         return double.Parse(dividend.ToString()!) / double.Parse(divisor.ToString()!);
     }
 
+    /// <summary>
+    /// Make up to 2 numbers to zero.
+    /// </summary>
+    /// <param name="number">The number.</param>
+    /// <returns>The make up to 2 numbers to zero result.</returns>
     public static string MakeUpTo2NumbersToZero(byte number)
     {
         var numberString = number.ToString();
@@ -69,6 +141,12 @@ public static partial class NH
         return numberString;
     }
 
+    /// <summary>
+    /// Get lowest.
+    /// </summary>
+    /// <param name="excludedValues">The excluded values.</param>
+    /// <param name="list">The list.</param>
+    /// <returns>The get lowest result.</returns>
     public static int GetLowest(List<int> excludedValues, List<int> list)
     {
         list.Sort();
@@ -83,6 +161,12 @@ public static partial class NH
         return lowestValue;
     }
 
+    /// <summary>
+    /// Generate interval byte.
+    /// </summary>
+    /// <param name="from">The from.</param>
+    /// <param name="to">The to.</param>
+    /// <returns>The generate interval byte result.</returns>
     public static List<byte> GenerateIntervalByte(byte from, byte to)
     {
         var byteIntervalList = new List<byte>();
@@ -92,6 +176,12 @@ public static partial class NH
         return byteIntervalList;
     }
 
+    /// <summary>
+    /// Sort t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="values">The values.</param>
+    /// <returns>The sort t result.</returns>
     public static List<T> Sort<T>(params T[] values)
     {
         var sortableCollection = new List<T>(values);
@@ -99,6 +189,12 @@ public static partial class NH
         return sortableCollection;
     }
 
+    /// <summary>
+    /// Calculate median average.
+    /// </summary>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <param name="shouldThrowOnSingleElement">The should throw on single element.</param>
+    /// <returns>The calculate median average result.</returns>
     public static string CalculateMedianAverage(Dictionary<string, List<float>> dictionary, bool shouldThrowOnSingleElement)
     {
         var resultDictionary = new Dictionary<string, (float, string)>();
@@ -117,12 +213,23 @@ public static partial class NH
         return outputGenerator.ToString();
     }
 
+    /// <summary>
+    /// Calculate median average.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="shouldThrowOnSingleElement">The should throw on single element.</param>
+    /// <returns>The calculate median average result.</returns>
     public static string CalculateMedianAverage(List<double> list, bool shouldThrowOnSingleElement)
     {
         MedianAverage<double> medianAverage = null!;
         return CalculateMedianAverage(list, out medianAverage, shouldThrowOnSingleElement);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the calculate median average no out double class.
+    /// </summary>
+    /// <param name="string">The string.</param>
+    /// <param name="MedianAverage<double>">The median average double.</param>
     public static (string, MedianAverage<double>) CalculateMedianAverageNoOutDouble(List<double> list, bool shouldThrowOnSingleElement)
     {
         MedianAverage<double> medianAverage = null!;
@@ -130,6 +237,13 @@ public static partial class NH
         return (calculationResult, medianAverage);
     }
 
+    /// <summary>
+    /// Calculate median average.
+    /// </summary>
+    /// <param name="list">The list.</param>
+    /// <param name="medianAverage">The median average.</param>
+    /// <param name="shouldThrowOnSingleElement">The should throw on single element.</param>
+    /// <returns>The calculate median average result.</returns>
     public static string CalculateMedianAverage(List<double> list, out MedianAverage<double> medianAverage, bool shouldThrowOnSingleElement)
     {
         list.RemoveAll(value => value == 0);
@@ -163,17 +277,34 @@ public static partial class NH
         return medianAverage.ToString();
     }
 
+    /// <summary>
+    /// Average.
+    /// </summary>
+    /// <param name="totalValue">The total value.</param>
+    /// <param name="count">The count.</param>
+    /// <returns>The average result.</returns>
     public static double Average(double totalValue, double count)
     {
         return Average<double>(totalValue, count);
     }
 
+    /// <summary>
+    /// Median t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <returns>The median t result.</returns>
     public static T Median<T>(this IList<T> list)
         where T : IComparable<T>
     {
         return list.NthOrderStatistic((list.Count - 1) / 2);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the number int until wont reach other char class.
+    /// </summary>
+    /// <param name="int">The int.</param>
+    /// <param name="string">The string.</param>
     public static (int, string) NumberIntUntilWontReachOtherChar(string text)
     {
         var numberStringBuilder = new StringBuilder();
@@ -187,6 +318,12 @@ public static partial class NH
         return (BTS.ParseInt(result, int.MaxValue), text);
     }
 
+    /// <summary>
+    /// Median 2 t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <returns>The median 2 t result.</returns>
     public static double Median2<T>(IList<T> list)
     {
         var numberCount = list.Count();
