@@ -18,7 +18,6 @@ global using System.Net;
 global using SunamoNumbers._sunamo;
 global using System.Diagnostics.CodeAnalysis;
 global using SunamoNumbers;
-global using SunamoNumbers._sunamo.SunamoInterfaces.Interfaces;
 global using SunamoNumbers.Data;
 global using System.Threading.Tasks;
 global using System.Web;

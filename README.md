@@ -39,3 +39,19 @@ dotnet add package SunamoNumbers
 ## License
 
 MIT
+
+<!-- sunamo:test-coverage:start -->
+## Test coverage
+
+| Metric | Value |
+|---|---|
+| Method | static |
+| Test projects | 1 |
+| Public types referenced by tests | 1/12 (8.3 %) |
+| Public methods referenced by tests | 1/39 (2.6 %) |
+| Line coverage | n/a |
+| Branch coverage | n/a |
+| Generated (UTC) | 2026-11-22 21:24 |
+
+<!-- sunamo:test-coverage:data {"package":"SunamoNumbers","container":"pinp","testProjects":1,"publicTypes":12,"typesReferencedByTests":1,"publicMethods":39,"methodsReferencedByTests":1,"lineRate":null,"branchRate":null,"method":"static","generatedUtc":"2026-11-22 21:24"} -->
+<!-- sunamo:test-coverage:end -->
